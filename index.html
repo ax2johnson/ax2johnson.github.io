@@ -115,6 +115,27 @@
   .btn-secondary { background: transparent; color: var(--ink); border: 2px solid var(--ink); }
   .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(14,27,44,0.18); }
 
+    /* Service board: agencies served */
+  .board {
+    margin-top: 56px; background: var(--ink); border-radius: 12px;
+    padding: 26px 30px; color: #fff;
+  }
+  .board-label {
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--signal);
+    margin-bottom: 16px;
+  }
+  .board-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 14px 22px;
+  }
+  .board-item { display: flex; align-items: baseline; gap: 10px; }
+  .board-item .code {
+    font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 0.8rem;
+    color: rgba(255,255,255,0.55);
+  }
+  .board-item .city { font-family: 'Archivo', sans-serif; font-weight: 600; font-size: 0.95rem; }
+
     /* ---------- Sections ---------- */
   section { padding: 78px 0; }
   .section-head { margin-bottom: 48px; max-width: 680px; }
@@ -124,6 +145,58 @@
     margin: 14px 0 12px;
   }
   .section-head p { color: var(--ink-soft); }
+
+    /* ---------- The Line (case studies) ---------- */
+  .line-track { position: relative; padding-left: 56px; }
+  .line-track::before {
+    content: ""; position: absolute; left: 17px; top: 8px; bottom: 8px;
+    width: 6px; border-radius: 3px;
+    background: linear-gradient(180deg,
+      var(--line-yvr) 0%, var(--line-phl) 16%, var(--line-bos) 32%,
+      var(--line-chi) 48%, var(--line-bwi) 62%, var(--line-yyz) 74%,
+      var(--line-sfo) 87%, var(--line-sin) 100%);
+  }
+  .station { position: relative; margin-bottom: 44px; }
+  .station:last-child { margin-bottom: 0; }
+  .station::before {
+    content: ""; position: absolute; left: -49px; top: 26px;
+    width: 18px; height: 18px; border-radius: 50%;
+    background: #fff; border: 5px solid var(--stop, var(--ink));
+    box-shadow: 0 0 0 3px var(--paper);
+  }
+  .station-card {
+    background: var(--card); border: 1px solid var(--rule); border-radius: 12px;
+    padding: 30px 34px; transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+  .station-card:hover { box-shadow: 0 10px 30px rgba(14,27,44,0.10); transform: translateY(-2px); }
+  .station-meta {
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 10px;
+  }
+  .stop-code {
+    font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 0.72rem;
+    letter-spacing: 0.1em; color: #fff; background: var(--stop, var(--ink));
+    padding: 3px 9px; border-radius: 4px;
+  }
+  .station-meta .period, .station-meta .agency {
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; color: var(--ink-soft);
+  }
+  .station h3 {
+    font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 1.35rem;
+    letter-spacing: -0.01em; margin-bottom: 4px;
+  }
+  .station .outcome {
+    font-weight: 600; color: var(--ink); margin-bottom: 12px; font-size: 1.02rem;
+  }
+  .station .outcome::before {
+    content: "▸"; color: var(--stop, var(--ink)); margin-right: 8px;
+  }
+  .station p.body { color: var(--ink-soft); font-size: 0.97rem; margin-bottom: 10px; }
+  .tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+  .tag {
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; font-weight: 500;
+    background: var(--paper); border: 1px solid var(--rule); border-radius: 100px;
+    padding: 4px 12px; color: var(--ink-soft);
+  }
 
   /* ---------- Contact ---------- */
   footer { background: var(--ink); color: #fff; padding: 80px 0 50px; }
@@ -145,6 +218,10 @@
     /* ---------- Responsive ---------- */
   @media (max-width: 760px) {
     .nav-links { display: none; }
+    .line-track { padding-left: 42px; }
+    .line-track::before { left: 10px; }
+    .station::before { left: -42px; width: 14px; height: 14px; border-width: 4px; }
+    .station-card { padding: 24px 22px; }
     section { padding: 60px 0; }
     header.hero { padding: 60px 0 50px; }
   }
@@ -156,6 +233,7 @@
   <div class="nav-inner">
     <a href="#top" class="nav-mark"><span class="dot"></span>A.JOHNSON</a>
     <div class="nav-links">
+      <a href="#work">Selected Work</a>
       <a href="#contact">Contact</a>
     </div>
   </div>
@@ -166,18 +244,195 @@
   <h1>Anthony Johnson</h1>
   <p class="lede">I help North America's largest transit agencies design, procure, and deliver next&#8209;generation fare collection systems, from technical specifications and vendor selection through integration, validation, and launch.</p>
   <div class="cta-row">
-    <a class="btn btn-primary" href="#contact">Get in touch</a>
+    <a class="btn btn-primary" href="#work">View selected work</a>
     <a class="btn btn-secondary" href="Johnson_Resume.pdf">Download resume</a>
   </div>
 
+  <div class="board">
+    <div class="board-label">Now serving · Programs delivered and in progress</div>
+    <div class="board-grid">
+      <div class="board-item"><span class="code">BOS</span><span class="city">MBTA AFC 2.0</span></div>
+      <div class="board-item"><span class="code">PHL</span><span class="city">SEPTA Key 2.0</span></div>
+      <div class="board-item"><span class="code">CHI</span><span class="city">CTA Ventra 3.0</span></div>
+      <div class="board-item"><span class="code">YVR</span><span class="city">TransLink Compass</span></div>
+      <div class="board-item"><span class="code">YYZ</span><span class="city">Metrolinx PRESTO</span></div>
+      <div class="board-item"><span class="code">BWI</span><span class="city">MDOT MTA CharmCard</span></div>
+      <div class="board-item"><span class="code">SFO</span><span class="city">Clipper Mobile</span></div>
+      <div class="board-item"><span class="code">SIN</span><span class="city">Thomson East Coast Line</span></div>
+    </div>
+  </div>
 </header>
+
+<section id="work" class="wrap">
+  <div class="section-head">
+    <span class="eyebrow">Selected Work</span>
+    <h2>One line through eight of the industry's biggest fare modernization programs</h2>
+    <p>Each stop below is a major account&#8209;based or open&#8209;loop fare collection program where I served as a technical lead, architect, or lead engineer. All clients are public agencies and all work is publicly attributable.</p>
+  </div>
+
+  <div class="line-track">
+
+    <article class="station" style="--stop: var(--line-yvr)">
+      <div class="station-card">
+        <div class="station-meta">
+          <span class="stop-code">YVR</span>
+          <span class="agency">TransLink · Vancouver, BC</span>
+          <span class="period">2025 – Present</span>
+        </div>
+        <h3>Compass Modernization Program</h3>
+        <p class="outcome">Defined the technical foundation for Metro Vancouver's next&#8209;generation fare system procurement.</p>
+        <p class="body">As technical lead for CCG's advisory engagement, I designed and facilitated a structured, multi&#8209;stakeholder needs&#8209;gathering effort across the agency, then coordinated a team of 12 subject matter experts to translate the findings into a comprehensive technical specification covering functional, performance, and integration requirements. The specification now anchors TransLink's procurement strategy and vendor engagement for a scalable, open, rider&#8209;centered system.</p>
+        <div class="tag-row">
+          <span class="tag">Procurement strategy</span>
+          <span class="tag">Technical specifications</span>
+          <span class="tag">Stakeholder workshops</span>
+          <span class="tag">Team of 12 SMEs</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="station" style="--stop: var(--line-phl)">
+      <div class="station-card">
+        <div class="station-meta">
+          <span class="stop-code">PHL</span>
+          <span class="agency">SEPTA · Philadelphia, PA</span>
+          <span class="period">2022 – Present</span>
+        </div>
+        <h3>Key 2.0 Fare Collection Replacement</h3>
+        <p class="outcome">Leading SEPTA's technical delivery and one of the industry's rare incumbent&#8209;to&#8209;incoming vendor transitions.</p>
+        <p class="body">I played a lead role in defining the technical specifications and full software, hardware, and operational requirements for Key 2.0, facilitated stakeholder workshops to align the program with SEPTA's vision, and helped evaluate vendor proposals through selection. I now manage technical delivery of the program.</p>
+        <p class="body">In an expanded capacity, I lead SEPTA's transition planning from its incumbent vendor, Conduent, to its incoming vendor, Cubic: a three&#8209;way balancing act between minimizing rider disruption, preserving a seamless customer experience through cutover, and limiting development burden on the outgoing vendor. My evaluation of transition strategies and integration sequencing directly informs SEPTA's transition roadmap.</p>
+        <div class="tag-row">
+          <span class="tag">Vendor transition planning</span>
+          <span class="tag">RFP evaluation</span>
+          <span class="tag">Requirements definition</span>
+          <span class="tag">Delivery management</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="station" style="--stop: var(--line-bos)">
+      <div class="station-card">
+        <div class="station-meta">
+          <span class="stop-code">BOS</span>
+          <span class="agency">MBTA · Boston, MA</span>
+          <span class="period">2021 – Present</span>
+        </div>
+        <h3>AFC 2.0 Implementation</h3>
+        <p class="outcome">Contactless EMV open payments are live across Boston, and I led the testing effort that got the system production ready.</p>
+        <p class="body">As CCG's project management and technical lead, I led cross&#8209;functional teams through design reviews, system validation, and defect management for the MBTA's account&#8209;based AFC 2.0 deployment, and contributed directly to the design and validation of the mobile solution, inspection solution, and validation devices.</p>
+        <p class="body">I'm now driving the next phase, introducing an account&#8209;based CharlieCard to the system, and serve as the program's fraud management expert, advising on fraud detection, risk mitigation, and revenue protection across the full AFC 2.0 ecosystem.</p>
+        <div class="tag-row">
+          <span class="tag">Open&#8209;loop EMV</span>
+          <span class="tag">Account&#8209;based ticketing</span>
+          <span class="tag">Fraud &amp; revenue protection</span>
+          <span class="tag">System validation</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="station" style="--stop: var(--line-chi)">
+      <div class="station-card">
+        <div class="station-meta">
+          <span class="stop-code">CHI</span>
+          <span class="agency">Chicago Transit Authority · Chicago, IL</span>
+          <span class="period">2021 – Present</span>
+        </div>
+        <h3>Ventra 3.0 Open Architecture Migration</h3>
+        <p class="outcome">Validating true open architecture readiness as Ventra moves to a cloud&#8209;hosted, third&#8209;party&#8209;friendly platform.</p>
+        <p class="body">I refined the vendor's integration guides and API documentation to align with industry best practices, and I lead the validation effort that rigorously tests system interfaces for third&#8209;party readiness. I'm also engaged in the CTA's regional integration strategy, evaluating technical pathways for Metra's participation in the Ventra 3.0 ecosystem, and I run the program's weekly PMO meetings and action item register to keep stakeholders aligned.</p>
+        <div class="tag-row">
+          <span class="tag">Open architecture</span>
+          <span class="tag">API documentation</span>
+          <span class="tag">Regional interoperability</span>
+          <span class="tag">PMO leadership</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="station" style="--stop: var(--line-bwi)">
+      <div class="station-card">
+        <div class="station-meta">
+          <span class="stop-code">BWI</span>
+          <span class="agency">Maryland Transit Administration · Baltimore, MD</span>
+          <span class="period">2021 – 2024</span>
+        </div>
+        <h3>CharmCard 2.0 Future Fare Payment System</h3>
+        <p class="outcome">Technical reviews across fare gates, validators, and back office kept designs aligned to requirements and standards.</p>
+        <p class="body">I led technical reviews of critical system components, assessing specifications and design documentation to surface gaps and risks and drive resolution across vendor and agency teams. I also coordinated design tasks with the MTA's IT department, serving as the bridge between the fare collection and technology teams on interfaces, integration dependencies, and implementation sequencing.</p>
+        <div class="tag-row">
+          <span class="tag">Design review</span>
+          <span class="tag">Fare gates &amp; validators</span>
+          <span class="tag">Back&#8209;office systems</span>
+          <span class="tag">Cross&#8209;team coordination</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="station" style="--stop: var(--line-yyz)">
+      <div class="station-card">
+        <div class="station-meta">
+          <span class="stop-code">YYZ</span>
+          <span class="agency">Metrolinx · Toronto, ON</span>
+          <span class="period">2021 – 2023</span>
+        </div>
+        <h3>PRESTO Next&#8209;Generation Procurement</h3>
+        <p class="outcome">Architected back&#8209;office and open architecture requirements for one of North America's largest fare systems.</p>
+        <p class="body">For the replacement of PRESTO, serving the Greater Toronto and Hamilton Area, I designed and implemented a structured requirements capture process using purpose&#8209;built tooling to collect and synthesize input from more than 50 stakeholders across Metrolinx and 10 partner transit agencies. I then architected the back&#8209;office and open architecture requirements, defining the framework for integration, scalability, and innovation in the next&#8209;generation system.</p>
+        <div class="tag-row">
+          <span class="tag">50+ stakeholders, 11 agencies</span>
+          <span class="tag">Back&#8209;office architecture</span>
+          <span class="tag">Requirements engineering</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="station" style="--stop: var(--line-sfo)">
+      <div class="station-card">
+        <div class="station-meta">
+          <span class="stop-code">SFO</span>
+          <span class="agency">Cubic Transportation Systems · San Francisco Bay Area, CA</span>
+          <span class="period">2019 – 2021</span>
+        </div>
+        <h3>Clipper Mobile Fare Payment System</h3>
+        <p class="outcome">Launched Clipper in Apple Wallet and Google Pay for 24 transit agencies in just over two years.</p>
+        <p class="body">As Lead Systems and Project Engineer on the Next Generation Clipper (C2) mobile project, I directed a team of 35 engineers across San Francisco, San Diego, Germany, Australia, and India through design and build of the iOS and Android apps and the Azure cloud back office, while facilitating the technical partnership with Apple and Google for NFC wallet integration. The system serves nine counties, 24 agencies, a major retail network, and over 15,000 legacy fare rules. Within two weeks of launch, the iOS virtual card network alone averaged over $25,000 per day in revenue.</p>
+        <div class="tag-row">
+          <span class="tag">35 engineers, 5 countries</span>
+          <span class="tag">Apple Wallet &amp; Google Pay</span>
+          <span class="tag">Azure back office</span>
+          <span class="tag">15,000+ fare rules</span>
+        </div>
+      </div>
+    </article>
+
+    <article class="station" style="--stop: var(--line-sin)">
+      <div class="station-card">
+        <div class="station-meta">
+          <span class="stop-code">SIN</span>
+          <span class="agency">Singapore LTA via Cubic · San Diego, CA</span>
+          <span class="period">2016 – 2018</span>
+        </div>
+        <h3>Thomson East Coast Line Automatic Fare Collection</h3>
+        <p class="outcome">Delivered the gate driver software for one of the world's longest driverless rapid transit lines.</p>
+        <p class="body">As lead software engineer for Cubic's automatic gate subsystem, I designed, developed, documented, and delivered gate driver software integrated into the Land Transport Authority's existing back&#8209;office control system, working in close collaboration with the customer on a two&#8209;party architecture. The line now serves hundreds of thousands of commuters daily, and the on&#8209;time prototype delivery earned a STAR Award from senior leadership.</p>
+        <div class="tag-row">
+          <span class="tag">Device software</span>
+          <span class="tag">Gate subsystems</span>
+          <span class="tag">International delivery</span>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
 
 <footer id="contact">
   <div class="wrap">
     <h2>Building or modernizing a fare system?</h2>
     <p class="sub">I'm open to senior architect and engineering leadership conversations with transit agencies, integrators, and consultancies. Let's talk.</p>
     <div class="contact-row">
-      <a class="btn btn-light" href="mailto:anthony.johnson@clevorgroup.com">anthony.johnson@clevorgroup.com</a>
+      <a class="btn btn-light" href="mailto:ax2johnson@gmail.com">ax2johnson@gmail.com</a>
       <a class="btn btn-ghost" href="tel:+15416361670">(541) 636&#8209;1670</a>
       <a class="btn btn-ghost" href="www.linkedin.com/in/ax2johnson">LinkedIn</a>
     </div>
