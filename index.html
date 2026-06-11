@@ -33,6 +33,7 @@
   html { scroll-behavior: smooth; }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
+    .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
   }
 
   body {
@@ -115,7 +116,7 @@
   .btn-secondary { background: transparent; color: var(--ink); border: 2px solid var(--ink); }
   .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(14,27,44,0.18); }
 
-    /* Service board: agencies served */
+  /* Service board: agencies served */
   .board {
     margin-top: 56px; background: var(--ink); border-radius: 12px;
     padding: 26px 30px; color: #fff;
@@ -136,7 +137,7 @@
   }
   .board-item .city { font-family: 'Archivo', sans-serif; font-weight: 600; font-size: 0.95rem; }
 
-    /* ---------- Sections ---------- */
+  /* ---------- Sections ---------- */
   section { padding: 78px 0; }
   .section-head { margin-bottom: 48px; max-width: 680px; }
   .section-head h2 {
@@ -146,7 +147,7 @@
   }
   .section-head p { color: var(--ink-soft); }
 
-    /* ---------- The Line (case studies) ---------- */
+  /* ---------- The Line (case studies) ---------- */
   .line-track { position: relative; padding-left: 56px; }
   .line-track::before {
     content: ""; position: absolute; left: 17px; top: 8px; bottom: 8px;
@@ -198,6 +199,48 @@
     padding: 4px 12px; color: var(--ink-soft);
   }
 
+  /* ---------- Expertise ---------- */
+  #expertise { background: var(--ink); color: #fff; }
+  #expertise .section-head h2 { color: #fff; }
+  #expertise .section-head p { color: rgba(255,255,255,0.65); }
+  #expertise .eyebrow { color: rgba(255,255,255,0.6); }
+  .exp-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 18px;
+  }
+  .exp-card {
+    border: 1px solid rgba(255,255,255,0.16); border-radius: 10px;
+    padding: 24px; background: rgba(255,255,255,0.04);
+  }
+  .exp-card h3 {
+    font-family: 'Archivo', sans-serif; font-weight: 600; font-size: 1.02rem;
+    margin-bottom: 8px; display: flex; align-items: center; gap: 10px;
+  }
+  .exp-card h3::before {
+    content: ""; width: 8px; height: 8px; border-radius: 50%;
+    background: var(--signal); flex-shrink: 0;
+  }
+  .exp-card p { font-size: 0.88rem; color: rgba(255,255,255,0.65); }
+
+  /* ---------- Career ---------- */
+  .career-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 56px; }
+  .role { padding: 22px 0; border-bottom: 1px solid var(--rule); }
+  .role:first-child { padding-top: 0; }
+  .role .period { font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; color: var(--ink-soft); }
+  .role h3 { font-family: 'Archivo', sans-serif; font-weight: 700; font-size: 1.12rem; margin: 4px 0 2px; }
+  .role .org { font-weight: 600; color: var(--ink-soft); font-size: 0.92rem; margin-bottom: 8px; }
+  .role p { font-size: 0.94rem; color: var(--ink-soft); }
+  .side-block { margin-bottom: 36px; }
+  .side-block h4 {
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; font-weight: 600;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft);
+    margin-bottom: 14px;
+  }
+  .award { display: flex; gap: 14px; margin-bottom: 14px; align-items: baseline; }
+  .award .yr { font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; color: var(--ink-soft); flex-shrink: 0; }
+  .award p { font-size: 0.9rem; }
+  .award p strong { font-weight: 600; }
+
   /* ---------- Contact ---------- */
   footer { background: var(--ink); color: #fff; padding: 80px 0 50px; }
   footer h2 {
@@ -215,9 +258,14 @@
     color: rgba(255,255,255,0.45);
   }
 
-    /* ---------- Responsive ---------- */
+  /* ---------- Reveal animation ---------- */
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.55s ease, transform 0.55s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* ---------- Responsive ---------- */
   @media (max-width: 760px) {
     .nav-links { display: none; }
+    .career-grid { grid-template-columns: 1fr; gap: 40px; }
     .line-track { padding-left: 42px; }
     .line-track::before { left: 10px; }
     .station::before { left: -42px; width: 14px; height: 14px; border-width: 4px; }
@@ -234,6 +282,8 @@
     <a href="#top" class="nav-mark"><span class="dot"></span>A.JOHNSON</a>
     <div class="nav-links">
       <a href="#work">Selected Work</a>
+      <a href="#expertise">Expertise</a>
+      <a href="#career">Career</a>
       <a href="#contact">Contact</a>
     </div>
   </div>
@@ -248,7 +298,7 @@
     <a class="btn btn-secondary" href="Johnson_Resume.pdf">Download resume</a>
   </div>
 
-  <div class="board">
+  <div class="board reveal">
     <div class="board-label">Now serving · Programs delivered and in progress</div>
     <div class="board-grid">
       <div class="board-item"><span class="code">BOS</span><span class="city">MBTA AFC 2.0</span></div>
@@ -272,7 +322,7 @@
 
   <div class="line-track">
 
-    <article class="station" style="--stop: var(--line-yvr)">
+    <article class="station reveal" style="--stop: var(--line-yvr)">
       <div class="station-card">
         <div class="station-meta">
           <span class="stop-code">YVR</span>
@@ -291,7 +341,7 @@
       </div>
     </article>
 
-    <article class="station" style="--stop: var(--line-phl)">
+    <article class="station reveal" style="--stop: var(--line-phl)">
       <div class="station-card">
         <div class="station-meta">
           <span class="stop-code">PHL</span>
@@ -311,7 +361,7 @@
       </div>
     </article>
 
-    <article class="station" style="--stop: var(--line-bos)">
+    <article class="station reveal" style="--stop: var(--line-bos)">
       <div class="station-card">
         <div class="station-meta">
           <span class="stop-code">BOS</span>
@@ -331,7 +381,7 @@
       </div>
     </article>
 
-    <article class="station" style="--stop: var(--line-chi)">
+    <article class="station reveal" style="--stop: var(--line-chi)">
       <div class="station-card">
         <div class="station-meta">
           <span class="stop-code">CHI</span>
@@ -350,7 +400,7 @@
       </div>
     </article>
 
-    <article class="station" style="--stop: var(--line-bwi)">
+    <article class="station reveal" style="--stop: var(--line-bwi)">
       <div class="station-card">
         <div class="station-meta">
           <span class="stop-code">BWI</span>
@@ -369,7 +419,7 @@
       </div>
     </article>
 
-    <article class="station" style="--stop: var(--line-yyz)">
+    <article class="station reveal" style="--stop: var(--line-yyz)">
       <div class="station-card">
         <div class="station-meta">
           <span class="stop-code">YYZ</span>
@@ -387,7 +437,7 @@
       </div>
     </article>
 
-    <article class="station" style="--stop: var(--line-sfo)">
+    <article class="station reveal" style="--stop: var(--line-sfo)">
       <div class="station-card">
         <div class="station-meta">
           <span class="stop-code">SFO</span>
@@ -406,7 +456,7 @@
       </div>
     </article>
 
-    <article class="station" style="--stop: var(--line-sin)">
+    <article class="station reveal" style="--stop: var(--line-sin)">
       <div class="station-card">
         <div class="station-meta">
           <span class="stop-code">SIN</span>
@@ -427,6 +477,91 @@
   </div>
 </section>
 
+<section id="expertise">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Expertise</span>
+      <h2>What I bring to a fare collection program</h2>
+      <p>A decade across the full program lifecycle, from the first stakeholder workshop to post&#8209;launch fraud management.</p>
+    </div>
+    <div class="exp-grid">
+      <div class="exp-card reveal">
+        <h3>Account&#8209;Based Ticketing &amp; Open&#8209;Loop EMV</h3>
+        <p>Architecture, design review, and validation of account&#8209;based systems and contactless EMV open payments, proven in production at the MBTA.</p>
+      </div>
+      <div class="exp-card reveal">
+        <h3>Technical Specifications &amp; Procurement</h3>
+        <p>Requirements capture at scale, specification authorship, RFP development, and vendor proposal evaluation for agency procurements.</p>
+      </div>
+      <div class="exp-card reveal">
+        <h3>Vendor Transition &amp; Cutover Planning</h3>
+        <p>Strategy and sequencing for incumbent&#8209;to&#8209;incoming vendor transitions that protect riders, operations, and program timelines.</p>
+      </div>
+      <div class="exp-card reveal">
+        <h3>System Integration &amp; Open Architecture</h3>
+        <p>API design review, integration documentation, third&#8209;party readiness validation, and regional interoperability strategy.</p>
+      </div>
+      <div class="exp-card reveal">
+        <h3>Fraud Management &amp; Revenue Protection</h3>
+        <p>Strategic and technical guidance on fraud detection and risk mitigation across full account&#8209;based fare ecosystems.</p>
+      </div>
+      <div class="exp-card reveal">
+        <h3>Testing, Validation &amp; Defect Management</h3>
+        <p>Leadership of comprehensive system test efforts, design reviews, and defect triage that take complex deployments to production.</p>
+      </div>
+      <div class="exp-card reveal">
+        <h3>Mobile Ticketing &amp; NFC Wallets</h3>
+        <p>Delivery of iOS and Android fare apps and direct integration partnerships with Apple Wallet and Google Pay.</p>
+      </div>
+      <div class="exp-card reveal">
+        <h3>Stakeholder Facilitation &amp; Program Leadership</h3>
+        <p>Multi&#8209;agency workshop design, PMO leadership, and distributed engineering team direction across global time zones.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="career" class="wrap">
+  <div class="section-head">
+    <span class="eyebrow">Career</span>
+    <h2>Ten years from device firmware to program leadership</h2>
+  </div>
+  <div class="career-grid">
+    <div>
+      <div class="role reveal">
+        <span class="period">2021 – Present</span>
+        <h3>Director of Engineering</h3>
+        <div class="org">Clevor Consulting Group (CCG)</div>
+        <p>I provide the technical expertise behind CCG's largest and most complex fare collection engagements, serving as a key technical resource across concurrent programs at the MBTA, SEPTA, CTA, TransLink, Metrolinx, and MDOT MTA.</p>
+      </div>
+      <div class="role reveal">
+        <span class="period">2019 – 2021</span>
+        <h3>Systems &amp; Project Engineer</h3>
+        <div class="org">Cubic Transportation Systems</div>
+        <p>Delivered the Next Generation Clipper (C2) program, including the C2 mobile solution and the C2 retail solution replacing legacy dial&#8209;up units across the Bay Area, earning the direct trust of the Metropolitan Transportation Commission.</p>
+      </div>
+      <div class="role reveal">
+        <span class="period">2015 – 2019</span>
+        <h3>Software Engineer</h3>
+        <div class="org">Cubic Transportation Systems</div>
+        <p>Worked directly with Cubic's customers on design requirements, project scope, and system verification, building device software from low&#8209;level drivers to GUI applications.</p>
+      </div>
+    </div>
+    <div>
+      <div class="side-block reveal">
+        <h4>Recognition</h4>
+        <div class="award"><span class="yr">2020</span><p><strong>Values In Practice Award</strong>, excellence in customer satisfaction, Cubic</p></div>
+        <div class="award"><span class="yr">2019</span><p><strong>High Potential Program</strong>, selected among the top 2% of Cubic employees</p></div>
+        <div class="award"><span class="yr">2018</span><p><strong>STAR Award</strong>, on&#8209;time delivery of the Singapore TEL gate prototypes</p></div>
+      </div>
+      <div class="side-block reveal">
+        <h4>Education</h4>
+        <div class="award"><span class="yr">2016</span><p><strong>B.S. Computer Engineering</strong>, UC San Diego, Jacobs School of Engineering</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer id="contact">
   <div class="wrap">
     <h2>Building or modernizing a fare system?</h2>
@@ -442,6 +577,19 @@
     </div>
   </div>
 </footer>
+
+<script>
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const els = document.querySelectorAll('.reveal');
+  if (reduced || !('IntersectionObserver' in window)) {
+    els.forEach(el => el.classList.add('in'));
+  } else {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    els.forEach(el => obs.observe(el));
+  }
+</script>
 
 </body>
 </html>
