@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anthony Johnson · Solutions Architect, Transit Fare Collection</title>
+<meta name="description" content="Anthony Johnson is a solutions architect and consultant specializing in next-generation fare collection systems for major transit agencies across North America.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F3F5F7;
+    --card: #FFFFFF;
+    --ink: #0E1B2C;
+    --ink-soft: #45556B;
+    --rule: #D8DEE6;
+    --signal: #FFC72C;
+    /* Line colors, one per program */
+    --line-bos: #C8102E;
+    --line-phl: #1B5FAA;
+    --line-chi: #00857D;
+    --line-yvr: #E87722;
+    --line-yyz: #2E8540;
+    --line-bwi: #6E4B9E;
+    --line-sfo: #003A70;
+    --line-sin: #9D5B25;
+    --max: 1080px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+
+  body {
+    font-family: 'Public Sans', system-ui, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.6;
+    font-size: 17px;
+  }
+
+  a { color: inherit; }
+  a:focus-visible, button:focus-visible {
+    outline: 3px solid var(--signal);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 28px; }
+
+  /* ---------- Nav ---------- */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(243,245,247,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 28px; max-width: var(--max); margin: 0 auto;
+  }
+  .nav-mark {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 600; font-size: 0.85rem; letter-spacing: 0.08em;
+    text-decoration: none;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .nav-mark .dot {
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--ink); border: 3px solid var(--signal);
+  }
+  .nav-links { display: flex; gap: 26px; }
+  .nav-links a {
+    text-decoration: none; font-size: 0.88rem; font-weight: 500;
+    color: var(--ink-soft);
+  }
+  .nav-links a:hover { color: var(--ink); }
+
+  /* ---------- Hero ---------- */
+  header.hero { padding: 90px 0 70px; }
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--ink-soft);
+    display: inline-flex; align-items: center; gap: 10px;
+  }
+  .eyebrow::before {
+    content: ""; width: 26px; height: 4px; background: var(--signal);
+    display: inline-block; border-radius: 2px;
+  }
+  .hero h1 {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.6rem, 6vw, 4.4rem);
+    letter-spacing: -0.02em;
+    line-height: 1.04;
+    margin: 18px 0 22px;
+  }
+  .hero p.lede {
+    font-size: clamp(1.05rem, 2vw, 1.3rem);
+    color: var(--ink-soft);
+    max-width: 640px;
+  }
+  .hero .cta-row { margin-top: 34px; display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    font-family: 'Archivo', sans-serif; font-weight: 600; font-size: 0.95rem;
+    text-decoration: none; padding: 13px 24px; border-radius: 6px;
+    display: inline-block; transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn-primary { background: var(--ink); color: #fff; }
+  .btn-secondary { background: transparent; color: var(--ink); border: 2px solid var(--ink); }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(14,27,44,0.18); }
+
+    /* ---------- Sections ---------- */
+  section { padding: 78px 0; }
+  .section-head { margin-bottom: 48px; max-width: 680px; }
+  .section-head h2 {
+    font-family: 'Archivo', sans-serif; font-weight: 700;
+    font-size: clamp(1.7rem, 3.4vw, 2.4rem); letter-spacing: -0.015em;
+    margin: 14px 0 12px;
+  }
+  .section-head p { color: var(--ink-soft); }
+
+  /* ---------- Contact ---------- */
+  footer { background: var(--ink); color: #fff; padding: 80px 0 50px; }
+  footer h2 {
+    font-family: 'Archivo', sans-serif; font-weight: 800;
+    font-size: clamp(1.9rem, 4vw, 3rem); letter-spacing: -0.02em; margin-bottom: 14px;
+  }
+  footer .sub { color: rgba(255,255,255,0.65); max-width: 520px; margin-bottom: 32px; }
+  .contact-row { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 56px; }
+  .btn-light { background: var(--signal); color: var(--ink); }
+  .btn-ghost { border: 2px solid rgba(255,255,255,0.4); color: #fff; }
+  .fine {
+    border-top: 1px solid rgba(255,255,255,0.15); padding-top: 24px;
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+    font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem;
+    color: rgba(255,255,255,0.45);
+  }
+
+    /* ---------- Responsive ---------- */
+  @media (max-width: 760px) {
+    .nav-links { display: none; }
+    section { padding: 60px 0; }
+    header.hero { padding: 60px 0 50px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#top" class="nav-mark"><span class="dot"></span>A.JOHNSON</a>
+    <div class="nav-links">
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero wrap" id="top">
+  <span class="eyebrow">Solutions Architect · Transit Fare Collection</span>
+  <h1>Anthony Johnson</h1>
+  <p class="lede">I help North America's largest transit agencies design, procure, and deliver next&#8209;generation fare collection systems, from technical specifications and vendor selection through integration, validation, and launch.</p>
+  <div class="cta-row">
+    <a class="btn btn-primary" href="#contact">Get in touch</a>
+    <a class="btn btn-secondary" href="Johnson_Resume.pdf">Download resume</a>
+  </div>
+
+</header>
+
+<footer id="contact">
+  <div class="wrap">
+    <h2>Building or modernizing a fare system?</h2>
+    <p class="sub">I'm open to senior architect and engineering leadership conversations with transit agencies, integrators, and consultancies. Let's talk.</p>
+    <div class="contact-row">
+      <a class="btn btn-light" href="mailto:anthony.johnson@clevorgroup.com">anthony.johnson@clevorgroup.com</a>
+      <a class="btn btn-ghost" href="tel:+15416361670">(541) 636&#8209;1670</a>
+      <a class="btn btn-ghost" href="www.linkedin.com/in/ax2johnson">LinkedIn</a>
+    </div>
+    <div class="fine">
+      <span>© 2026 Anthony Johnson</span>
+      <span>Solutions Architect · Transit Fare Collection</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
